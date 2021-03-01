@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "988058144487",
+    "project_id": "chuckquote",
+    "storage_bucket": "chuckquote.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988058144487:android:8f7de74b8eef6f5233dc42",
+        "android_client_info": {
+          "package_name": "fr.mlefaouder.chuck_quote"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "988058144487-9ugdbecka4mbpos3r1q4prqk1re59s9a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8E7XcixRUgjAW1ojuqe1yXheYO3a91tY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "988058144487-9ugdbecka4mbpos3r1q4prqk1re59s9a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -78,7 +78,7 @@ class _HomePageState extends State<HomePage> {
                   } else if (snapshot.hasError) {
                     return Text("${snapshot.error}");
                   }
-                  return CircularProgressIndicator();
+                  return Center(child: CircularProgressIndicator());
                 }),
           )
         ],

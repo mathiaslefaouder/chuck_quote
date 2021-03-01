@@ -1,0 +1,19 @@
+default_platform(:android)
+
+platform :android do
+
+  desc "Sending version to APP"
+  lane :send do
+    sh("cd ../../../chuck_quote && flutter clean")
+    sh("cd ../../../chuck_quote  && flutter pub get")
+    sh("cd ../../../chuck_quote  && flutter build apk --release")
+
+    firebase_app_distribution(
+                app: "1:988058144487:android:8f7de74b8eef6f5233dc42",
+                apk_path: "/Users/MathiasLF/AndroidStudioProjects/flutter/chuck_quote/build/app/outputs/flutter-apk/app-release.apk",
+                release_notes: "New version",
+                testers: "mathias.lefaouder@outlook.fr"
+            )
+
+  end
+end
