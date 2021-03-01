@@ -12,7 +12,7 @@ platform :android do
                 app: "1:988058144487:android:8f7de74b8eef6f5233dc42",
                 apk_path: "/Users/MathiasLF/AndroidStudioProjects/flutter/chuck_quote/build/app/outputs/flutter-apk/app-release.apk",
                 release_notes: "New version",
-                testers: "mathias.lefaouder@outlook.fr"
+                testers: "gbalas.sup@gmail.com"
             )
 
   end

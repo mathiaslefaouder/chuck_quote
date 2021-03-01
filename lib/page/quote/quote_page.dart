@@ -16,12 +16,15 @@ class QuotePage extends StatefulWidget {
 
 class _QuotePageState extends State<QuotePage> {
   Quote quote;
+  String catName;
 
   Future<Quote> _fetchQuote() async {
     String url = 'https://api.chucknorris.io/jokes/random';
-    if (this.widget.categorie != null) {
-      url =
-          'https://api.chucknorris.io/jokes/random?category=${widget.categorie.name}';
+    catName = this.widget.categorie.name;
+    if (this.widget.categorie.name != "Give me a random quote !") {
+      url = 'https://api.chucknorris.io/jokes/random?category=$catName';
+    } else {
+      catName = 'random';
     }
 
     final response = await http.get(url);
@@ -46,36 +49,72 @@ class _QuotePageState extends State<QuotePage> {
     _future = _fetchQuote();
   }
 
+  void refreshQuote() {
+    // reload
+    setState(() {
+      _future = _fetchQuote();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Quote from ${widget.categorie.name}'),
+      appBar: AppBar(
+        title: Text(
+          'Quote from $catName',
+          style: TextStyle(fontSize: 20.0),
         ),
-        body: SafeArea(
-          child: Column(
-            children: [
-              Expanded(
-                child: FutureBuilder<Quote>(
-                    future: _future,
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        Quote data = quote;
-                        return Container(
-                          child: Text(data.value),
-                        );
-                      } else if (snapshot.hasError) {
-                        return Text("${snapshot.error}");
-                      }
+      ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: FutureBuilder<Quote>(
+                  future: _future,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      Quote data = quote;
                       return Column(
                         children: [
-                          CircularProgressIndicator(),
+                          Container(
+                              margin: const EdgeInsets.only(
+                                  left: 20.0, right: 20.0, top: 90.0),
+                              child: Text(
+                                data.value,
+                                textAlign: TextAlign.justify,
+                                style: TextStyle(
+                                    fontSize: 25.0, color: Colors.black),
+                              )),
                         ],
                       );
-                    }),
-              )
-            ],
+                    } else if (snapshot.hasError) {
+                      return Text("${snapshot.error}");
+                    }
+                    return Column(
+                      children: [
+                        CircularProgressIndicator(),
+                      ],
+                    );
+                  }),
+            )
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        child: RaisedButton(
+          child: Text(
+            "New quote",
+            style: TextStyle(fontSize: 20),
           ),
-        ));
+          color: Colors.blueAccent,
+          textColor: Colors.white,
+          padding: EdgeInsets.all(16.0),
+          splashColor: Colors.grey,
+          onPressed: () {
+            refreshQuote();
+          },
+        ),
+      ),
+    );
   }
 }

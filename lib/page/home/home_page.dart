@@ -30,6 +30,10 @@ class _HomePageState extends State<HomePage> {
 
       mainCatList = catList.map((cat) => new Categorie.fromJson(cat)).toList();
 
+      Categorie random = new Categorie.fromJson("Give me a random quote !");
+      newCatList.insert(0, random);
+      mainCatList.insert(0, random);
+
       return newCatList;
     } else {
       throw Exception('Failed to load cat from API');
